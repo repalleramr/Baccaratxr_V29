@@ -1,0 +1,45 @@
+{
+  "name": "Baccarat Tracker",
+  "short_name": "Baccarat",
+  "start_url": "./index.html?source=pwa",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/maskable-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "id": "./index.html",
+  "scope": "./",
+  "display_override": [
+    "standalone",
+    "window-controls-overlay",
+    "minimal-ui",
+    "browser"
+  ],
+  "description": "Baccarat number tracking PWA",
+  "orientation": "portrait",
+  "prefer_related_applications": false,
+  "screenshots": [
+    {
+      "src": "poster/poster-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>Baccarat Tracker V23</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section id="tab-play" class="tab active">
+      <header class="hero">
+        <div class="bankroll" id="bankroll">15000</div>
+        <div class="stats6">
+          <div><span>P Step</span><strong id="pStep">1</strong></div>
+          <div><span>P Active</span><strong id="pActive">0</strong></div>
+          <div><span>P Bet</span><strong id="pBet">0</strong></div>
+          <div><span>B Step</span><strong id="bStep">1</strong></div>
+          <div><span>B Active</span><strong id="bActive">0</strong></div>
+          <div><span>B Bet</span><strong id="bBet">0</strong></div>
+        </div>
+        <div class="target" id="targetMsg"></div>
+      </header>
+
+      <section class="pad-wrap">
+        <h2>Player</h2>
+        <div class="pad" id="playerPad"></div>
+        <h2>Banker</h2>
+        <div class="pad" id="bankerPad"></div>
+      </section>
+
+      <section class="card">
+        <div class="row"><b>Last Round:</b><span id="lastRound">—</span></div>
+        <div class="row"><b>Last 3 Rounds:</b><span id="last3">—</span></div>
+        <div class="row"><b>Profit This Shoe:</b><span id="shoeProfit">0</span></div>
+        <div class="row"><b>Target Progress:</b><span id="targetProgress">0%</span></div>
+        <div class="row"><b>Next Exposure:</b><span id="nextExposure">0</span></div>
+        <div class="row"><b>Exposure Status:</b><span id="playRisk">SAFE</span></div>
+      </section>
+
+      <section class="card">
+        <div class="label">Next bet (Player)</div>
+        <div id="nextPlayer">—</div>
+        <div class="label" style="margin-top:14px">Next bet (Banker)</div>
+        <div id="nextBanker">—</div>
+        <div class="row total"><b>Total next bet (both sides):</b><span id="nextTotal">0</span></div>
+      </section>
+
+      
+      <section class="actions one">
+        <button id="installBtn" class="blue" style="display:none">INSTALL APP</button>
+      </section>
+
+      <section class="actions three">
+        <button id="undoBtn" class="danger">UNDO LAST</button>
+        <button id="clearBtn" class="muted">CLEAR SHOE</button>
+        <button id="newShoeBtn" class="blue">NEW SHOE</button>
+      </section>
+    </section>
+
+    <section id="tab-board" class="tab">
+      <h2 class="tab-title">Board</h2>
+      <section class="card">
+        <div class="row"><b>Player active numbers:</b><span id="playerActiveWarn">0</span></div>
+        <div class="row"><b>Banker active numbers:</b><span id="bankerActiveWarn">0</span></div>
+        <div class="note">Green = active, grey = inactive, dark grey = excluded.</div>
+      </section>
+      <section class="card"><h3>Player Numbers</h3><div class="num-grid" id="playerBoard"></div></section>
+      <section class="card"><h3>Banker Numbers</h3><div class="num-grid" id="bankerBoard"></div></section>
+    </section>
+
+    <section id="tab-history" class="tab">
+      <h2 class="tab-title">History</h2>
+      <section class="card"><div id="historyTable" class="table-wrap"></div></section>
+      <section class="actions one">
+        <button id="saveJson" class="muted">SAVE RESULTS</button>
+        <button id="exportCsv" class="blue">EXPORT REPORT CSV</button>
+      </section>
+    </section>
+
+    <section id="tab-settings" class="tab">
+      <h2 class="tab-title">Settings</h2>
+      <section class="card">
+        <label>Starting bankroll<input id="startBankroll" type="number"></label>
+        <div class="two">
+          <label>Target %<input id="targetPercent" type="number"></label>
+          <label>Target amount<input id="targetAmount" type="number"></label>
+        </div>
+        <label class="check"><input id="keepTarget" type="checkbox">Keep same target every shoe</label>
+        <label class="check"><input id="autoStop" type="checkbox">Stop betting when target reached</label>
+        <div class="two">
+          <label>Min bet<input id="minBet" type="number"></label>
+          <label>Max bet<input id="maxBet" type="number"></label>
+        </div>
+        <div class="two">
+          <label>Multiple of<input id="betMultiple" type="number"></label>
+          <label>Profit per number target<input id="profitTarget" type="number"></label>
+        </div>
+        <div class="actions two">
+          <button id="applySettings" class="muted">APPLY SETTINGS</button>
+          <button id="regenLadder" class="blue">AUTO GENERATE LADDER</button>
+        </div>
+      </section>
+    </section>
+
+    <section id="tab-analytics" class="tab">
+      <h2 class="tab-title">Analytics</h2>
+      <section class="card">
+        <div class="row"><b>Hands:</b><span id="handsCount">0</span></div>
+        <div class="row"><b>Current shoe profit:</b><span id="aShoeProfit">0</span></div>
+        <div class="row"><b>Safe bankroll now:</b><span id="safeNow">0</span></div>
+        <div class="row"><b>Safe bankroll 3 rounds:</b><span id="safe3">0</span></div>
+        <div class="row"><b>Locked profit now:</b><span id="lockedProfit">0</span></div>
+        <div class="row"><b>Risk status:</b><span id="riskStatus">SAFE</span></div>
+        <div class="row"><b>Suggested bankroll next shoe:</b><span id="nextShoe">0</span></div>
+      </section>
+      <section class="card">
+        <div class="row"><b>Shoes played:</b><span id="shoesPlayed">0</span></div>
+        <div class="row"><b>Total profit today:</b><span id="profitToday">0</span></div>
+        <div class="row"><b>Average profit per shoe:</b><span id="avgProfit">0</span></div>
+        <div class="row"><b>Largest drawdown:</b><span id="largestDrawdown">0</span></div>
+        <div class="row"><b>Largest win:</b><span id="largestWin">0</span></div>
+      </section>
+      <section class="card"><h3>Stats</h3><div id="analyticsTable" class="table-wrap"></div></section>
+      <section class="card"><h3>Player Heatmap</h3><div class="heat-grid" id="playerHeat"></div></section>
+      <section class="card"><h3>Banker Heatmap</h3><div class="heat-grid" id="bankerHeat"></div></section>
+      <section class="card"><h3>Hot / Cold Predictor</h3><div id="predictorTable" class="table-wrap"></div></section>
+    </section>
+
+    <section id="tab-ladder" class="tab">
+      <h2 class="tab-title">Ladder</h2>
+      <section class="card"><div id="ladderList"></div></section>
+    </section>
+  </main>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="play" class="navbtn active">Play</button>
+    <button data-tab="board" class="navbtn">Board</button>
+    <button data-tab="history" class="navbtn">History</button>
+    <button data-tab="settings" class="navbtn">Settings</button>
+    <button data-tab="analytics" class="navbtn">Analytics</button>
+    <button data-tab="ladder" class="navbtn">Ladder</button>
+  </nav>
+  <script src="app.js"></script>
+</body>
+</html>
